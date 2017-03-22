@@ -125,9 +125,4 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
-	
-	public boolean FoundMine(){
-		
-		return true;
-	}
 }

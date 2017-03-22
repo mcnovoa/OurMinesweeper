@@ -14,11 +14,5 @@ public class Main {
 		myFrame.addMouseListener(myMouseAdapter);
 
 		myFrame.setVisible(true);
-		
-//		do while(!myPanel.getFoundMine)
-//		{
-//			myFrame.repaint();
-//			Thread.sleep(150);
-//		}
 	}
 }	
