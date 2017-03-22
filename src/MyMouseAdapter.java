@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.plaf.ColorUIResource;
 
 public class MyMouseAdapter extends MouseAdapter {
 	private Random generator = new Random();
@@ -80,7 +81,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							//On the left column and on the top row... do nothing
 						} else {
 							//On the grid other than on the left column and on the top row:
-							Color newColor = null;
+							Color newColor = Color.GRAY;
 							myPanel.repaint();
 						}
 					}
