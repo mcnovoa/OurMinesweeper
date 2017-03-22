@@ -10,6 +10,7 @@ import javax.swing.plaf.ColorUIResource;
 
 public class MyMouseAdapter extends MouseAdapter {
 	private Random generator = new Random();
+	
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 		case 1:		//Left mouse button
@@ -34,9 +35,14 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.mouseDownGridY = myPanel.getGridY(x, y);
 			myPanel.repaint();
 			break;
-		case 3:		//Right mouse button
-			//Do nothing
+		case 3:		Component c1 = e.getComponent();
+		while (!(c1 instanceof JFrame)) {
+			c1 = c1.getParent();
+			if (c1 == null) {
+				return;
+			}
 			break;
+		}	
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
 			break;
@@ -92,9 +98,48 @@ public class MyMouseAdapter extends MouseAdapter {
 			}
 			myPanel.repaint();
 			break;
-		case 3:		//Right mouse button
-			//Do nothing
+		case 3:		
+			Component c1 = e.getComponent();
+			while (!(c1 instanceof JFrame)) {
+				c1 = c1.getParent();
+				if (c1 == null) {
+					return;
+				}
+			}
+			JFrame myFrame1 = (JFrame)c1;
+			MyPanel myPanel1 = (MyPanel) myFrame1.getContentPane().getComponent(0); 
+			Insets myInsets1 = myFrame1.getInsets();
+			int x12 = myInsets1.left;
+			int y12 = myInsets1.top;
+			e.translatePoint(-x12, -y12);
+			int x3 = e.getX();
+			int y3 = e.getY();
+			myPanel1.x = x3;
+			myPanel1.y = y3;
+			int gridX1 = myPanel1.getGridX(x3, y3);
+			int gridY1 = myPanel1.getGridY(x3, y3);
+			if ((myPanel1.mouseDownGridX == -1) || (myPanel1.mouseDownGridY == -1)) {
+				//Had pressed outside
+				//Do nothing
+			} else {
+				if ((gridX1 == -1) || (gridY1 == -1)) {
+					//Is releasing outside
+					//Do nothing
+				} else {
+					if ((myPanel1.mouseDownGridX != gridX1) || (myPanel1.mouseDownGridY != gridY1)) {
+						//Released the mouse button on a different cell where it was pressed
+						//Do nothing
+					} else {
+							Color newColor = Color.RED;
+							myPanel1.colorArray[gridX1][gridY1] = newColor;
+							myPanel1.repaint();
+						
+						}
+					
+				}
+			
 			break;
+			}
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
 			break;

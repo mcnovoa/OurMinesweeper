@@ -64,10 +64,6 @@ public class MyPanel extends JPanel {
 		for (int x = 0; x <= TOTAL_COLUMNS; x++) {
 			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)));
 		}
-
-		//Draw an additional cell at the bottom left
-//	g.drawRect(x1 + GRID_X, y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)), INNER_CELL_SIZE + 1, INNER_CELL_SIZE + 1);
-
 		//Paint cell colors
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {
 			for (int y = 0; y < TOTAL_ROWS-1; y++) {
