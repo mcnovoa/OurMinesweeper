@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.plaf.ColorUIResource;
 
 public class MyMouseAdapter extends MouseAdapter {
+	
+	OurMineCoordinates sweeper = new OurMineCoordinates();
 	private Random generator = new Random();
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
@@ -84,6 +86,14 @@ public class MyMouseAdapter extends MouseAdapter {
 						} else if (myPanel.colorArray[gridX][gridY].equals(Color.RED)) {
 //							Do nothing
 						}
+
+							else if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
+							{
+								Color newColor1 = Color.BLACK;
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
+								myPanel.repaint();
+						}
+
 						else{
 							//On the grid other than on the left column and on the top row:
 							Color newColor = Color.GRAY;
@@ -130,10 +140,12 @@ public class MyMouseAdapter extends MouseAdapter {
 				// Do nothing.
 			}
 			else {
-
 				myPanel1.colorArray[gridX1][gridY1] = Color.WHITE;
 				myPanel1.repaint();
 
+
+				myPanel1.colorArray[gridX1][gridY1] = Color.WHITE;
+				myPanel1.repaint();
 			}
 		}
 			break;
