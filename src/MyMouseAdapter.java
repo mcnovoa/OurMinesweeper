@@ -92,8 +92,46 @@ public class MyMouseAdapter extends MouseAdapter {
 			}
 			myPanel.repaint();
 			break;
-		case 3:		//Right mouse button
-			//Do nothing
+		case 3:		Component c1 = e.getComponent();
+		while (!(c1 instanceof JFrame)) {
+			c1 = c1.getParent();
+			if (c1 == null) {
+				return;
+			}
+		}
+		JFrame myFrame1 = (JFrame)c1;
+		MyPanel myPanel1 = (MyPanel) myFrame1.getContentPane().getComponent(0); 
+		Insets myInsets1 = myFrame1.getInsets();
+		int x12 = myInsets1.left;
+		int y12 = myInsets1.top;
+		e.translatePoint(-x12, -y12);
+		int x3 = e.getX();
+		int y3 = e.getY();
+		myPanel1.x = x3;
+		myPanel1.y = y3;
+		int gridX1 = myPanel1.getGridX(x3, y3);
+		int gridY1 = myPanel1.getGridY(x3, y3);
+		myPanel1.repaint();
+		
+		if(gridX1 >= 0 && gridX1 <= 8 && gridY1 >= 0 && gridY1 <= 8) {
+
+			if(myPanel1.colorArray[gridX1][gridY1].equals(Color.WHITE)){
+
+				myPanel1.colorArray[gridX1][gridY1] = Color.RED;
+				myPanel1.repaint();
+			}
+
+			else if(myPanel1.colorArray[gridX1][gridY1].equals(Color.BLACK) || myPanel1.colorArray[gridX1][gridY1].equals(Color.GRAY) || myPanel1.colorArray[gridX1][gridY1].equals(Color.YELLOW)){
+
+				// Do nothing.
+			}
+			else {
+
+				myPanel1.colorArray[gridX1][gridY1] = Color.WHITE;
+				myPanel1.repaint();
+
+			}
+		}
 			break;
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
