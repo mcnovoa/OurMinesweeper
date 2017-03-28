@@ -22,7 +22,8 @@ public class MyPanel extends JPanel {
 
 	public MyPanel() { // This is the constructor... this code runs first to
 						// initialize
-		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {  // Use of
+		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) 
+		{													    // Use of
 																// "random" to
 																// prevent
 																// unwanted
@@ -30,7 +31,8 @@ public class MyPanel extends JPanel {
 																// warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
 		}
-		if (TOTAL_COLUMNS + (new Random()).nextInt(1) < 2) { 	//Use of "random"
+		if (TOTAL_COLUMNS + (new Random()).nextInt(1) < 2) 
+		{													 	//Use of "random"
 																// to prevent
 																// unwanted
 																// Eclipse

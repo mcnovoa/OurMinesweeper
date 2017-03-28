@@ -7,7 +7,7 @@ public class Main {
 		JFrame myFrame = new JFrame();
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		myFrame.setLocation(400, 150);
-		myFrame.setSize(400, 400);
+		myFrame.setSize(600, 400);
 		
 		//Title at the center
 		myFrame.setFont(new Font("System", Font.PLAIN, 14));
@@ -29,6 +29,7 @@ public class Main {
 		MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
 		myFrame.addMouseListener(myMouseAdapter);
 
+		myFrame.setResizable(false);
 		myFrame.setVisible(true);
 	}
 }	

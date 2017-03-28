@@ -13,7 +13,8 @@ public class OurMineCoordinates
 	public static int totalMines = 10;
 	
 	
-	public static Color[][] getColorField() {
+	public static Color[][] getColorField() 
+	{
 		return colorArray;
 	}
 //	Generates the mines on the panel
@@ -34,13 +35,16 @@ public class OurMineCoordinates
 			}
 		}
 	}
+	
 	public boolean mineFound(int x, int y)
 	{
 		return mineField[x][y];
 	}
 	
-	public boolean grayCell(int x, int y) {
-		if (colorArray[x][y].equals(Color.GRAY)) {
+	public boolean grayCell(int x, int y) 
+	{
+		if (colorArray[x][y].equals(Color.GRAY)) 
+		{
 			return true;
 		}
 		return false;
@@ -49,10 +53,13 @@ public class OurMineCoordinates
 	public int numbersInCells(int x, int y){
 			int Counter = 0;
 
-			for (int i = y - 1; i < y + 2; i++) {
-				for (int j = x - 1; j < x + 2; j++) {
+			for (int i = y - 1; i < y + 2; i++) 
+			{
+				for (int j = x - 1; j < x + 2; j++)
+					{
 					
-					if ((i >= 0 && i < 9) && (j >= 0 && j < 9)){
+					if ((i >= 0 && i < 9) && (j >= 0 && j < 9))
+					{
 						if (mineFound(j, i))
 							Counter++;
 					}
@@ -60,11 +67,16 @@ public class OurMineCoordinates
 			}
 			return Counter;
 		}
-	public void dominoEffect(int x, int y) {
-		if ((x >= 0 && x < 9) && (y >= 0 && y < 9)) {
-			if (!((mineFound(x, y) == true) || (grayCell(x, y) == true))) {
+	
+	public void dominoEffect(int x, int y) 
+	{
+		if ((x >= 0 && x < 9) && (y >= 0 && y < 9)) 
+		{
+			if (!((mineFound(x, y) == true) || (grayCell(x, y) == true))) 
+			{
 				colorArray[x][y] = Color.GRAY;
-				if (numbersInCells(x, y) > 0) {
+				if (numbersInCells(x, y) > 0) 
+				{
 //					Do nothing!
 				} else {
 					// run method recursively for cells
@@ -83,6 +95,29 @@ public class OurMineCoordinates
 		String message = JOptionPane.showInputDialog(null, "You found a mine. Try harder next time.", "FAILURE!!!!", JOptionPane.PLAIN_MESSAGE);
 		{
 			System.exit(0);
+		}
+	}
+	
+	public void gameWon()
+	{
+		int totalCells = 81;
+		int gameWonCells = totalCells-totalMines;
+		
+		for (int i=0; i<9; i++)
+		{
+			for (int j=0; j<9; j++)
+			{
+				if (grayCell(i,j))
+					gameWonCells--;
+				}
+			}
+		if (gameWonCells == 0)
+		{
+			String message = JOptionPane.showInputDialog(null, "You did not find a mine. You are too smart for this game.", "VICTORY!!!1!", JOptionPane.PLAIN_MESSAGE);
+			{
+				System.exit(0);
+			}
+
 		}
 	}
 }

@@ -12,13 +12,17 @@ public class MyMouseAdapter extends MouseAdapter {
 	
 	OurMineCoordinates sweeper = new OurMineCoordinates();
 	private Random generator = new Random();
-	public void mousePressed(MouseEvent e) {
-		switch (e.getButton()) {
+	public void mousePressed(MouseEvent e) 
+	{
+		switch (e.getButton()) 
+		{
 		case 1:		//Left mouse button
 			Component c = e.getComponent();
-			while (!(c instanceof JFrame)) {
+			while (!(c instanceof JFrame)) 
+			{
 				c = c.getParent();
-				if (c == null) {
+				if (c == null) 
+				{
 					return;
 				}
 			}
@@ -44,13 +48,17 @@ public class MyMouseAdapter extends MouseAdapter {
 			break;
 		}
 	}
-	public void mouseReleased(MouseEvent e) {
-		switch (e.getButton()) {
+	public void mouseReleased(MouseEvent e) 
+	{
+		switch (e.getButton()) 
+		{
 		case 1:		//Left mouse button
 			Component c = e.getComponent();
-			while (!(c instanceof JFrame)) {
+			while (!(c instanceof JFrame)) 
+			{
 				c = c.getParent();
-				if (c == null) {
+				if (c == null) 
+				{
 					return;
 				}
 			}
@@ -66,16 +74,21 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.y = y;
 			int gridX = myPanel.getGridX(x, y);
 			int gridY = myPanel.getGridY(x, y);
-			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
+			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) 
+			{
 				//Had pressed outside
 				//Do nothing
-				} else {
-					if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {
+				} 
+			else 
+			{
+					if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) 
+					{
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
 						//Released the mouse button on the same cell where it was pressed
-						if ((gridX == 0) || (gridY == 0)) {
+						if ((gridX == 0) || (gridY == 0)) 
+						{
 							
 							Color newColor = Color.GRAY;
 							sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
@@ -98,10 +111,12 @@ public class MyMouseAdapter extends MouseAdapter {
 							sweeper.gameLostMessage();
 						}
 						
-						 if (sweeper.colorArray[gridX][gridY] != (Color.RED)) {
+						 if (sweeper.colorArray[gridX][gridY] != (Color.RED))
+						 {
 							sweeper.dominoEffect(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
 						}
-						 else{
+						 else
+						 {
 							//On the grid other than on the left column and on the top row:
 							Color newColor = Color.GRAY;
 							sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
@@ -110,12 +125,15 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 						}
 					}
+			sweeper.gameWon();
 			myPanel.repaint();
 			break;
 		case 3:		Component c1 = e.getComponent();
-		while (!(c1 instanceof JFrame)) {
+		while (!(c1 instanceof JFrame)) 
+		{
 			c1 = c1.getParent();
-			if (c1 == null) {
+			if (c1 == null) 
+			{
 				return;
 			}
 		}
@@ -135,20 +153,21 @@ public class MyMouseAdapter extends MouseAdapter {
 		
 		if(gridX1 >= 0 && gridX1 <= 8 && gridY1 >= 0 && gridY1 <= 8) {
 
-			if(sweeper.colorArray[gridX1][gridY1].equals(Color.WHITE)){
+			if(sweeper.colorArray[gridX1][gridY1].equals(Color.WHITE))
+			{
 
 				sweeper.colorArray[gridX1][gridY1] = Color.RED;
 				myPanel1.repaint();
 			}
 
-			else if(sweeper.colorArray[gridX1][gridY1].equals(Color.BLACK) || sweeper.colorArray[gridX1][gridY1].equals(Color.GRAY) || sweeper.colorArray[gridX1][gridY1].equals(Color.YELLOW)){
-
+			else if(sweeper.colorArray[gridX1][gridY1].equals(Color.BLACK) || sweeper.colorArray[gridX1][gridY1].equals(Color.GRAY) || sweeper.colorArray[gridX1][gridY1].equals(Color.YELLOW))
+			{
 				// Do nothing.
 			}
-			else {
+			else 
+			{
 				sweeper.colorArray[gridX1][gridY1] = Color.WHITE;
 				myPanel1.repaint();
-
 			}
 		}
 			break;
