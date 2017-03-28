@@ -78,7 +78,7 @@ public class OurMineCoordinates
 			}
 		}
 	}
-	public static void gameLostMessage() //Simulates saving score (Does not save it)
+	public static void gameLostMessage() //Simulates to save score (Does not save it)
 	{
 		String message = JOptionPane.showInputDialog(null, "You found a mine. Try harder next time.", "FAILURE!!!!", JOptionPane.PLAIN_MESSAGE);
 		{

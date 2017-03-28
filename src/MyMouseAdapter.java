@@ -69,10 +69,6 @@ public class MyMouseAdapter extends MouseAdapter {
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
 				//Had pressed outside
 				//Do nothing
-			} else {
-				if ((gridX == -1) || (gridY == -1)) {
-					//Is releasing outside
-					//Do nothing
 				} else {
 					if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {
 						//Released the mouse button on a different cell where it was pressed
@@ -80,22 +76,32 @@ public class MyMouseAdapter extends MouseAdapter {
 					} else {
 						//Released the mouse button on the same cell where it was pressed
 						if ((gridX == 0) || (gridY == 0)) {
+							
 							Color newColor = Color.GRAY;
 							sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-							
 							myPanel.repaint();
-						} else if (sweeper.colorArray[gridX][gridY] != (Color.RED)) {
-							sweeper.dominoEffect(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
-						}
-
-							else if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
+							
+							if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
 							{
 								Color newColor1 = Color.BLACK;
 								sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
 								myPanel.repaint();
+								sweeper.gameLostMessage();
+							}
+						} 
+						
+						else if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
+						{
+							Color newColor1 = Color.BLACK;
+							sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
+							myPanel.repaint();
+							sweeper.gameLostMessage();
 						}
-
-						else{
+						
+						 if (sweeper.colorArray[gridX][gridY] != (Color.RED)) {
+							sweeper.dominoEffect(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
+						}
+						 else{
 							//On the grid other than on the left column and on the top row:
 							Color newColor = Color.GRAY;
 							sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
@@ -104,8 +110,6 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 						}
 					}
-				}
-			
 			myPanel.repaint();
 			break;
 		case 3:		Component c1 = e.getComponent();
