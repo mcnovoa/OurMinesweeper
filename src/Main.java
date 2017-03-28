@@ -18,8 +18,6 @@ public class Main {
 		int c = myFrame.getWidth()/2 -(a/2);
 		int d = c/b;
 		String cent ="";
-		
-		//for (int i=0; i!=w; i++) pad +=" "; 
 		cent = String.format("%"+d+"s", cent);
 		myFrame.setTitle(cent+"Minesweeper");
 		

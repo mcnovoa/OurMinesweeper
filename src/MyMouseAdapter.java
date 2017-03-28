@@ -110,6 +110,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 						}
 					}
+			sweeper.gameWon();
 			myPanel.repaint();
 			break;
 		case 3:		Component c1 = e.getComponent();

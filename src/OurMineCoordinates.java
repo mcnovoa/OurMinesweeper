@@ -30,6 +30,7 @@ public class OurMineCoordinates
 				mineField[column][row] = true;
 				setMines++;
 				
+				//This will print the coordiates of the Mines(Yes, you can cheat)
 				System.out.println("Mine has been set in mineField["+row+"]["+column+"]"); 
 			}
 		}
@@ -83,6 +84,28 @@ public class OurMineCoordinates
 		String message = JOptionPane.showInputDialog(null, "You found a mine. Try harder next time.", "FAILURE!!!!", JOptionPane.PLAIN_MESSAGE);
 		{
 			System.exit(0);
+		}
+	}
+	public void gameWon()
+	{
+		int totalCells = 81;
+		int gameWonCells = totalCells-totalMines;
+		
+		for (int i=0; i<9; i++)
+		{
+			for (int j=0; j<9; j++)
+			{
+				if (grayCell(i,j))
+					gameWonCells--;
+				}
+			}
+		if (gameWonCells == 0)
+		{
+			String message = JOptionPane.showInputDialog(null, "You did not find a mine. You are too smart for this game.", "VICTORY!!!1!", JOptionPane.PLAIN_MESSAGE);
+			{
+				System.exit(0);
+			}
+
 		}
 	}
 }
