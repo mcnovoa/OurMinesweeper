@@ -91,7 +91,7 @@ public class MyPanel extends JPanel {
 					g.setColor(c);
 					g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1,
 							y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) + 1, INNER_CELL_SIZE, INNER_CELL_SIZE);
-					if (sweeper.uncoveredCell(x, y) && sweeper.numbersInCells(x, y) > 0) {
+					if (sweeper.grayCell(x, y) && sweeper.numbersInCells(x, y) > 0) {
 						Color m = Color.BLACK;
 						g.setColor(m);
 						g.drawString(Integer.toString(sweeper.numbersInCells(x, y)),
@@ -170,4 +170,3 @@ public class MyPanel extends JPanel {
 		return y;
 	}
 }
-//sweeper.createMines();

@@ -39,7 +39,7 @@ public class OurMineCoordinates
 		return mineField[x][y];
 	}
 	
-	public boolean uncoveredCell(int x, int y) {
+	public boolean grayCell(int x, int y) {
 		if (colorArray[x][y].equals(Color.GRAY)) {
 			return true;
 		}
@@ -60,4 +60,29 @@ public class OurMineCoordinates
 			}
 			return Counter;
 		}
+	public void dominoEffect(int x, int y) {
+		if ((x >= 0 && x < 9) && (y >= 0 && y < 9)) {
+			if (!((mineFound(x, y) == true) || (grayCell(x, y) == true))) {
+				colorArray[x][y] = Color.GRAY;
+				if (numbersInCells(x, y) > 0) {
+//					Do nothing!
+				} else {
+					// run method recursively for cells
+					// in 4 directions around target
+					// cell.
+					dominoEffect(x + 1, y);
+					dominoEffect(x - 1, y);
+					dominoEffect(x, y - 1); 
+					dominoEffect(x, y + 1);
+				}
+			}
+		}
 	}
+	public static void gameLostMessage() //Simulates saving score (Does not save it)
+	{
+		String message = JOptionPane.showInputDialog(null, "You found a mine. Try harder next time.", "FAILURE!!!!", JOptionPane.PLAIN_MESSAGE);
+		{
+			System.exit(0);
+		}
+	}
+}
