@@ -81,29 +81,36 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on the same cell where it was pressed
 						if ((gridX == 0) || (gridY == 0)) {
 							Color newColor = Color.GRAY;
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+							myPanel.sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 							myPanel.repaint();
-						} else if (myPanel.colorArray[gridX][gridY].equals(Color.RED)) {
-//							Do nothing
 						}
+							else if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
+							{
+								Color newColor1 = Color.BLACK;
+								myPanel.sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
+								myPanel.repaint();
+							}
+						}  if (myPanel.sweeper.colorArray[gridX][gridY].equals(Color.RED)) {
+							//Do nothing
+								}
 
 							else if (sweeper.mineFound(myPanel.mouseDownGridX, myPanel.mouseDownGridY) == true)
 							{
 								Color newColor1 = Color.BLACK;
-								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
+								myPanel.sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor1;
 								myPanel.repaint();
 						}
 
 						else{
 							//On the grid other than on the left column and on the top row:
 							Color newColor = Color.GRAY;
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+							myPanel.sweeper.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+//							sweeper.dominoEffect(myPanel.mouseDownGridX, myPanel.mouseDownGridY);
 							myPanel.repaint();
 							}
 						}
 					}
-				}
-			
+				
 			myPanel.repaint();
 			break;
 		case 3:		Component c1 = e.getComponent();
@@ -129,23 +136,20 @@ public class MyMouseAdapter extends MouseAdapter {
 		
 		if(gridX1 >= 0 && gridX1 <= 8 && gridY1 >= 0 && gridY1 <= 8) {
 
-			if(myPanel1.colorArray[gridX1][gridY1].equals(Color.WHITE)){
+			if(myPanel1.sweeper.colorArray[gridX1][gridY1].equals(Color.WHITE)){
 
-				myPanel1.colorArray[gridX1][gridY1] = Color.RED;
+				myPanel1.sweeper.colorArray[gridX1][gridY1] = Color.RED;
 				myPanel1.repaint();
 			}
 
-			else if(myPanel1.colorArray[gridX1][gridY1].equals(Color.BLACK) || myPanel1.colorArray[gridX1][gridY1].equals(Color.GRAY) || myPanel1.colorArray[gridX1][gridY1].equals(Color.YELLOW)){
+			else if(myPanel1.sweeper.colorArray[gridX1][gridY1].equals(Color.BLACK) || myPanel1.sweeper.colorArray[gridX1][gridY1].equals(Color.GRAY) || myPanel1.sweeper.colorArray[gridX1][gridY1].equals(Color.YELLOW)){
 
 				// Do nothing.
 			}
 			else {
-				myPanel1.colorArray[gridX1][gridY1] = Color.WHITE;
+				myPanel1.sweeper.colorArray[gridX1][gridY1] = Color.WHITE;
 				myPanel1.repaint();
 
-
-				myPanel1.colorArray[gridX1][gridY1] = Color.WHITE;
-				myPanel1.repaint();
 			}
 		}
 			break;
